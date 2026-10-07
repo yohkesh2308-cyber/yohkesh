@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy - AI Workout Generator</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #1e1e1e; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; max-width: 500px; box-sizing: border-box; }
+        h2 { text-align: center; color: #448afc; margin-bottom: 25px; }
+        label { display: block; margin: 12px 0 6px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; background: #2d2d2d; border: 1px solid #444; border-radius: 5px; color: #fff; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #448afc; border: none; border-radius: 5px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background 0.3s; }
+        button:hover { background: #357ae8; }
+        .nav-link { text-align: center; margin-top: 15px; display: block; color: #aaa; text-decoration: none; }
+        .nav-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>💪 FitBuddy - AI Workout Generator</h2>
+        <form action="/generate-workout" method="POST">
+            <label>User ID:</label>
+            <input type="number" name="user_id" required placeholder="e.g. 10">
+
+            <label>Name:</label>
+            <input type="text" name="username" required placeholder="Your name">
+
+            <label>Age:</label>
+            <input type="number" name="age" required placeholder="Your age">
+
+            <label>Weight (kg):</label>
+            <input type="number" step="0.1" name="weight" required placeholder="Weight in kilograms">
+
+            <label>Fitness Goal:</label>
+            <select name="goal">
+                <option value="weight loss">Weight Loss</option>
+                <option value="muscle gain">Muscle Gain</option>
+                <option value="general fitness">General Fitness</option>
+            </select>
+
+            <label>Workout Intensity:</label>
+            <select name="intensity">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit">Generate Plan</button>
+        </form>
+        <a class="nav-link" href="/view-all-users">Go to Admin Dashboard</a>
+    </div>
+</body>
+</html>

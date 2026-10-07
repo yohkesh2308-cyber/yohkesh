@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Personalized Workout Plan</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #121212; color: #ffffff; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: #1e1e1e; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h2, h3 { color: #448afc; }
+        .profile-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; background: #2d2d2d; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        pre { background: #151515; padding: 15px; border-radius: 5px; border: 1px solid #333; overflow-x: auto; white-space: pre-wrap; font-size: 14px; line-height: 1.5; color: #e0e0e0; }
+        .tip-box { background: rgba(68, 138, 252, 0.1); border-left: 5px solid #448afc; padding: 15px; margin: 20px 0; border-radius: 0 5px 5px 0; }
+        .alert { background: #2e7d32; color: #fff; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-weight: bold; }
+        .feedback-form { background: #2d2d2d; padding: 20px; border-radius: 5px; margin-top: 30px; }
+        textarea { width: 100%; height: 80px; background: #151515; border: 1px solid #444; border-radius: 5px; color: #fff; padding: 10px; box-sizing: border-box; resize: vertical; }
+        button { background: #448afc; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #357ae8; }
+        .actions { margin-top: 20px; display: flex; gap: 15px; }
+        .btn-link { color: #aaa; text-decoration: none; align-self: center; }
+        .btn-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏋️ Your Personalized Fitness Workspace</h2>
+        
+        {% if message %}
+            <div class="alert">{{ message }}</div>
+        {% endif %}
+
+        <h3>User Profile Summary</h3>
+        <div class="profile-summary">
+            <div><strong>Name:</strong> {{ username }}</div>
+            <div><strong>User ID:</strong> {{ user_id }}</div>
+            <div><strong>Age:</strong> {{ age }}</div>
+            <div><strong>Weight:</strong> {{ weight }} kg</div>
+            <div><strong>Goal:</strong> {{ goal }}</div>
+            <div><strong>Intensity:</strong> {{ intensity }}</div>
+        </div>
+
+        <div class="tip-box">
+            <strong>🥦 Nutrition & Recovery Tip (Gemini Flash):</strong>
+            <p>{{ nutrition_tip }}</p>
+        </div>
+
+        {% if updated_plan %}
+            <h3>🔄 Updated Workout Plan (Gemini Pro)</h3>
+            <pre>{{ updated_plan }}</pre>
+            
+            <h3>📋 Original Workout Plan</h3>
+            <pre>{{ workout_plan }}</pre>
+        {% else %}
+            <h3>📋 7-Day Workout Plan (Gemini Pro)</h3>
+            <pre>{{ workout_plan }}</pre>
+        {% endif %}
+
+        <div class="feedback-form">
+            <h3>📝 Request Plan Revisions</h3>
+            <form action="/submit-feedback" method="POST">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <label for="feedback">Provide feedback to update your plan (e.g., "Add more cardio", "Include rest days"):</label>
+                <textarea name="feedback" id="feedback" required placeholder="Let us know how to adjust this plan..."></textarea>
+                <button type="submit">Submit Feedback & Regenerate</button>
+            </form>
+        </div>
+
+        <div class="actions">
+            <a class="btn-link" href="/">⬅️ Back to Registration Form</a>
+            <a class="btn-link" href="/view-all-users">📊 Admin Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
